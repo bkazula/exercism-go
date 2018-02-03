@@ -10,16 +10,18 @@ func Hey(remark string) string {
 	isUpper := strings.ToUpper(remark) == remark
 	isWord, _ := regexp.MatchString("[a-zA-Z]+", remark)
 
-	if len(remark) == 0 {
+	switch {
+	case len(remark) == 0:
 		return "Fine. Be that way!"
-	} else if strings.HasSuffix(remark, "?") && isUpper && isWord {
+	case strings.HasSuffix(remark, "?") && isUpper && isWord:
 		return "Calm down, I know what I'm doing!"
-	} else if strings.HasSuffix(remark, "?") {
+	case strings.HasSuffix(remark, "?"):
 		return "Sure."
-	} else if !isWord {
+	case !isWord:
 		return "Whatever."
-	} else if isUpper {
+	case isUpper:
 		return "Whoa, chill out!"
+	default:
+		return "Whatever."
 	}
-	return "Whatever."
 }
